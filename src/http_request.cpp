@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "http_request.h"
 
@@ -77,6 +78,12 @@ Request *parse_request (uint8_t *request) {
     return &req;
   }
 
+  char* pPayload = strstr((char*)&request[position], "\r\n\r\n");
+  if (pPayload != NULL)
+  {
+    *pPayload = '\0';
+    req.body = (uint8_t*)pPayload + 4;
+  }
   req.headers = parse_headers(&request[position]);
 
   return &req;
