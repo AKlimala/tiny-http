@@ -18,7 +18,7 @@ extern "C" {
 #endif
 
 #ifndef MAX_ROUTES
-#define MAX_ROUTES 16
+#define MAX_ROUTES 32
 #endif
 
 typedef struct Route {
